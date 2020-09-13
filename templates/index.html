@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- ##################import files#################### -->
+    <link rel="stylesheet" href="{{ url_for('static',    filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',    filename='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',    filename='css/now-ui-kit.css') }}">
+    <!-- ################################################## -->
+    <!--<link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/now-ui-kit.css"> -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,600,700,800,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700,800,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,600,700,800,900&display=swap" rel="stylesheet">
+    <title>Athus</title>
+    <link rel="icon" href="{{ url_for('static',    filename='assets/logo.png') }}">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg bg-transparent">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <img src="{{ url_for('static',    filename='assets/menuIcon.svg') }}" width="20px" height="20px" style="max-width: none !important;">
+    </button>
+    <img src="{{ url_for('static',    filename='assets/logo.png') }}" width="50" height="50">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left: 20px !important">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ url_for('index') }}">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('commands') }}">Commands</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('dashbord') }}">Dashboard</a>
+            </li>
+        </ul>
+        <div class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Documentation
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{{ url_for('commands') }}"></a>
+                <a class="dropdown-item" href="/tutorials">Tutorials</a>
+            </div>
+        </div>
+        <div class="nav-item">
+            <a class="nav-link" href="#">About</a>
+        </div>
+        {% if cookie == None %}
+            <a href="{{ url_for('login') }}"><button class="btn login-btn btn-outline-accent my-2 my-sm-0" style="font-size: 10px !important;font-family: poppins !important;">lOGIN</button></a>
+        {% else %}
+            <a href="{{ url_for('logout') }}"><button class="btn login-btn btn-outline-accent my-2 my-sm-0" style="font-size: 10px !important;font-family: poppins !important;">logoUT</button></a>
+        {% endif %}
+    </div>
+</nav>
+<div class="heading">
+
+<!--     <h1 class="display-5 title">Athus.</h1>
+    <p class="subtitle">Bot feito para drrr.com, para facilitar a sala e deixa-las mais automaticas.!</p>
+    <a class="btn btn-primary btn-lg" href="#start_link" target="_blank" role="button">Get started</a>
+    <a class="btn btn-secondary btn-lg" href="#server_link" target="_blank" role="button">Add to server</a> -->
+    <br /><br /><br /><br /><br /><br />
+</div>
+<div class="features">
+    <div class="title">Ferrametas do Bot</div>
+    <div class="subtitle">Nós fornecemos a você os melhores recursos do Bot!!</div>
+    <div class="cards">
+        <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">/add</h5>
+            <p class="card-text">adiciona uma musica a sala, fazendo com que ela seja tocada rapidamente, sem precisar fazer toda aquela conversão e depois colocar na sala</p>
+        </div>
+    </div>
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">/gif</h5>
+                <p class="card-text">Chega de abrir outra aba ae copiar  o link, agora você pode procurar gif's com um termo especifico, melhor e randomico então vai se estressar muito :)</p>
+            </div>
+        </div>
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">/sera</h5>
+                <p class="card-text">você consegue ve qual sera a porcentagem de algo acontecer na sua vida, como por exemplo se você vai morrer hoje :)<br><br><br></p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="statistics">
+    <div class="cards">
+        <div class="card statistic" style="width: 18rem;">
+            <div class="card-body">
+                <p class="card-title" style="font-size: 50px !important;line-height: 15px !important;letter-spacing: -0.06em !important;font-weight: bold !important;">01</h1>
+                <p style="font-weight: bold !important;font-size: 20px !important;">room</p>
+            </div>
+        </div>
+        <div class="card statistic" style="width: 18rem;">
+            <div class="card-body">
+                <p class="card-title" style="font-size: 40px !important;line-height: 15px !important;letter-spacing: -0.06em !important;font-weight: bold !important;">{{usuarios}}/20</h1>
+                <p style="font-weight: bold !important;font-size: 20px !important;">users</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="page_end">
+    <div class="start">
+        <div class="card">
+            <div class="card-body gs-card">
+                <!-- <div class="title">Ready to try Bot?</div>
+                <div class="subtitle">Invite Bot and start giving your server cool perks!</div> -->
+                <br />
+                <!-- <a class="btn btn-primary btn-lg" href="#start_link" role="button">Get started</a> -->
+            </div><br />
+        </div>
+    </div>
+    <div class="footer">
+        <div class="bot-footer">
+            <img src="{{ url_for('static',    filename='assets/logo.png') }}" width="50" height="50"><br />
+            Copyright © Athus - 2020
+        </div><br/>
+        <div class="nouridio">developed by <a href="https://twitter.com/londarks"> Londarks</a></div><br>
+        <div class="nouridio">design by <a href="https://twitter.com/Nouridio"> nouridio</a></div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script type="text/javascript"
+         src="{{ url_for('static', filename='js/now-ui-kit.min.js') }}"></script>
+</body>
+</html>

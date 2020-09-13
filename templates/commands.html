@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- ##################import files#################### -->
+    <link rel="stylesheet" href="{{ url_for('static',    filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',    filename='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',    filename='css/now-ui-kit.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',    filename='css/tabelas.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',    filename='css/dashbord.css') }}">
+    <!-- ################################################## -->
+    <!--<link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/now-ui-kit.css"> -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,600,700,800,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700,800,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,600,700,800,900&display=swap" rel="stylesheet">
+    <link rel="icon" href="{{ url_for('static',    filename='assets/logo.png') }}">
+    <title>Athus</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg bg-transparent">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <img src="{{ url_for('static',    filename='assets/menuIcon.svg') }}" width="20px" height="20px" style="max-width: none !important;">
+    </button>
+    <img src="{{ url_for('static',    filename='assets/logo.png') }}" width="50" height="50">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left: 20px !important">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ url_for('index') }}">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('commands') }}">Commands</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('dashbord') }}">Dashboard</a>
+            </li>
+        </ul>
+        <div class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Documentation
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{{ url_for('commands') }}"></a>
+                <a class="dropdown-item" href="/tutorials">Tutorials</a>
+            </div>
+        </div>
+        <div class="nav-item">
+            <a class="nav-link" href="#">About</a>
+        </div>
+        {% if cookie == None %}
+            <a href="{{ url_for('login') }}"><button class="btn login-btn btn-outline-accent my-2 my-sm-0" style="font-size: 10px !important;font-family: poppins !important;">lOGIN</button></a>
+        {% else %}
+            <a href="{{ url_for('logout') }}"><button class="btn login-btn btn-outline-accent my-2 my-sm-0" style="font-size: 10px !important;font-family: poppins !important;">logoUT</button></a>
+        {% endif %}
+    </div>
+</nav>
+<div class="img-center">
+    <div class=" img-card img-fluid rounded-circle">
+        <img class="" style="width: 10rem;" src="{{ url_for('static',    filename='assets/console.png') }}">
+    </div>
+</div>
+<table class="container">
+    <thead>
+        <tr>
+            <th><h1>Comando</h1></th>
+            <th><h1>Descrição</h1></th>
+            <th><h1>Como usar</h1></th>
+            <th><h1>permissão</h1></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>/help</td>
+            <td>mostras os comandos do bot dentro da sala</td>
+            <td>/help</td>
+            <td><span class="card-commands">All_users</span></td>
+        </tr>
+        <tr>
+            <td>/admin list</td>
+            <td>mostras os lista de adm dentro da sala</td>
+            <td>/admin list</td>
+            <td><span class="card-commands">All_users</span></td>
+        </tr>
+        <tr>
+            <td>/admin</td>
+            <td>mostras os comandos de adm dentro da sala</td>
+            <td>/admin</td>
+            <td><span class="card-commands">All_users</span></td>
+        </tr>
+        <tr>
+            <td>/help music</td>
+            <td>mostra como colocar musica</td>
+            <td>/help music</td>
+            <td><span class="card-commands">All_users</span></td>
+        </tr>
+        <tr>
+            <td>/add</td>
+            <td>Adiciona uma musica no bot para ser reproduzida</td>
+            <td>/add ID_MUSIC</td>
+            <td><span class="card-commands">All_users</span></td>
+        </tr>
+        <tr>
+            <td>/play</td>
+            <td>se tiver musicas ja carregadas ele começa a tocar</td>
+            <td>/play</td>
+            <td><span class="card-commands">All_users</span></td>
+        </tr>
+        <tr>
+            <td>/pause</td>
+            <td>pausa a playlist (necesario da play denovo)</td>
+            <td>/pause</td>
+            <td><span class="card-commands">All_users</span></td>
+        </tr>
+        <tr>
+            <td>/queue</td>
+            <td>veja qual musica será a proxima a ser tocada</td>
+            <td>/queue</td>
+            <td><span class="card-commands">All_users</span></td>
+        </tr>
+        <tr>
+            <td>/skip</td>
+            <td>pula de musica (tem cooldown)</td>
+            <td>/skip</td>
+            <td><span class="card-commands">All_users</span></td>
+        </tr>
+        <tr>
+            <td>/list ban</td>
+            <td>mostra a lista de banidos dentro da sala</td>
+            <td>/list ban</td>
+            <td><span class="card-commands">All_users</span></td>
+        </tr>
+        <tr>
+            <td>/log</td>
+            <td>mostra a ultima ação feita por algum ADM</td>
+            <td>/log</td>
+            <td><span class="card-commands">All_users</span></td>
+        </tr>
+        <tr>
+            <td>/sera</td>
+            <td>mostra a a porcentagem de algo acontecer</td>
+            <td>/sera londarks vai morrer</td>
+            <td><span class="card-commands">All_users</span></td>
+        </tr>
+        <tr>
+            <td>/gif</td>
+            <td>procura um gif com nome digitado</td>
+            <td>/gif naruto</td>
+            <td><span class="card-commands">All_users</span></td>
+        </tr>
+        <tr>
+            <td>/t</td>
+            <td>traduz uma menssagem para algum idioma</td>
+            <td>/t en: bom dia</td>
+            <td><span class="card-commands">All_users</span></td>
+        </tr>
+        <tr>
+            <td>/send</td>
+            <td>envia uma menssagem anonima para alguem</td>
+            <td>/send londarks: bom dia</td>
+            <td><span class="card-commands">All_users</span></td>
+        </tr>
+        <tr>
+            <td>/clear list ban</td>
+            <td>lispa a lista de banidos</td>
+            <td>/clear list ban</td>
+            <td><span class="card-commands">administrator</span></td>
+        </tr>
+        <tr>
+            <td>/ban</td>
+            <td>bane um usuario</td>
+            <td>/ban londarks</td>
+            <td><span class="card-commands">administrator</span></td>
+        </tr>
+        <tr>
+            <td>/kick</td>
+            <td>expulsa um usuario</td>
+            <td>/kick londarks</td>
+            <td><span class="card-commands">administrator</span></td>
+        </tr>
+        <tr>
+            <td>/host</td>
+            <td>pega o host do bot (pelo privado)</td>
+            <td>/host</td>
+            <td><span class="card-commands">administrator</span></td>
+        </tr>
+        <tr>
+            <td>/room_name</td>
+            <td>muda o nome da sala (ate 20 caracteres)</td>
+            <td>/room_name meck bocó</td>
+            <td><span class="card-commands">administrator</span></td>
+        </tr>
+        <tr>
+            <td>/room_info</td>
+            <td>muda o descrição da sala (ate 20 caracteres)</td>
+            <td>/room_info meck bocó</td>
+            <td><span class="card-commands">administrator</span></td>
+        </tr>
+        <tr>
+            <td>/unban</td>
+            <td>desbane um usuario (se ele ja deslogou não funciona)</td>
+            <td>/unban londarks</td>
+            <td><span class="card-commands">administrator</span></td>
+        </tr>
+        <tr>
+            <td>/set</td>
+            <td>define o tipo de banimento por flood no chat</td>
+            <td>/set troll | /set none</td>
+            <td><span class="card-commands">administrator</span></td>
+        </tr>
+        <tr>
+            <td>/repot</td>
+            <td>coloca o Nick e tripcode na blacklist</td>
+            <td>/repot</td>
+            <td><span class="card-commands">administrator</span></td>
+        </tr>
+        <tr>
+            <td>/block</td>
+            <td>bloqueia algum comando do bot</td>
+            <td>/block music| /block gif</td>
+            <td><span class="card-commands">administrator</span></td>
+        </tr>
+        <tr>
+            <td>/enable</td>
+            <td>libera um comando bloqueado do bot</td>
+            <td>/enable music| /enable gif</td>
+            <td><span class="card-commands">administrator</span></td>
+        </tr>
+        <tr>
+            <td>/thanos</td>
+            <td>expulsa todos da sala</td>
+            <td>/thanos</td>
+            <td><span class="card-commands">londarks</span></td>
+        </tr>
+        <tr>
+            <td>/promote</td>
+            <td>adiciona um adm</td>
+            <td>/promote londarks</td>
+            <td><span class="card-commands">londarks</span></td>
+        </tr>
+        <tr>
+            <td>/remove</td>
+            <td>remove um adm</td>
+            <td>/remove londarks</td>
+            <td><span class="card-commands">londarks</span></td>
+        </tr>
+        <tr>
+            <td>/trans</td>
+            <td>faz o bot ficar traduzindo uma pessoa</td>
+            <td>/trans en: londarks</td>
+            <td><span class="card-commands">londarks</span></td>
+        </tr>
+        <tr>
+            <td>/exit</td>
+            <td>faz o bot sair da sala</td>
+            <td>/exit</td>
+            <td><span class="card-commands">londarks</span></td>
+        </tr>
+
+
+    </tbody>
+</table>
+
+<!-- area da dashbord -->
+
+
+
+    <div class="footer">
+        <div class="bot-footer">
+            <img src="{{ url_for('static',    filename='assets/logo.png') }}" width="50" height="50"><br />
+            Copyright © Athus - 2020
+        </div><br/>
+        <div class="nouridio">developed by <a href="https://twitter.com/londarks"> Londarks</a></div><br>
+        <div class="nouridio">design by <a href="https://twitter.com/Nouridio"> nouridio</a></div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script type="text/javascript"
+         src="{{ url_for('static', filename='js/now-ui-kit.min.js') }}"></script>
+</body>
+</html>
