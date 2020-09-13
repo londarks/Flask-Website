@@ -384,10 +384,10 @@ class Module(object):
             t_adm_description.start()
 #nivel londarks
         elif '/remove' in message:
-            t_remove = threading.Thread(target=self.admin.removeAdm, args=(message, name_sender, tripcode, id_sender))
+            t_remove = threading.Thread(target=self.admin.removeAdm, args=(message,tripcode))
             t_remove.start()
         elif '/promote' in message:
-            t_remove = threading.Thread(target=self.admin.addAdm, args=(message, name_sender, tripcode, id_sender))
+            t_remove = threading.Thread(target=self.admin.addAdm, args=(message, tripcode))
             t_remove.start()
 
 
@@ -448,10 +448,10 @@ class Module(object):
             t_adm_description.start()
 
         elif '/remove' in message:
-            t_remove = threading.Thread(target=self.admin.removeAdm, args=(message, name_sender, tripcode, id_sender))
+            t_remove = threading.Thread(target=self.admin.removeAdm, args=(message, tripcode))
             t_remove.start()
             #adiciona mais adm no sistema
         elif '/promote' in message:
-            t_remove = threading.Thread(target=self.admin.addAdm, args=(message, name_sender, tripcode, id_sender))
+            t_remove = threading.Thread(target=self.admin.addAdm, args=(message, tripcode))
             t_remove.start()
         return False

@@ -315,9 +315,6 @@ class admininstrator(object):
     def addAdm(self, message,tripcode):
         username = message[9:]
         if tripcode == "TqOzGmy5V.":
-        try:
-            with open("athus/Database/adm.json", "r", encoding='utf-8') as file_object:
-                accounts = json.load(file_object)
             #achando usuario
             rooms = self.session.get(
                 "https://drrr.com/json.php?update=")
@@ -327,7 +324,9 @@ class admininstrator(object):
                 for rooms in rooms_data['users']:
                     user.append(rooms)
                 for j in range(len(user)):
-                    if user[j]['name'] == message:
+                    if user[j]['name'] == username:
+                        with open("athus/Database/adm.json", "r", encoding='utf-8') as file_object:
+                            accounts = json.load(file_object)
                         try:
                             tripcode = online[i]['tripcode']
                         except Exception:
@@ -338,8 +337,6 @@ class admininstrator(object):
                             json.dump(accounts, file_object, ensure_ascii=False,indent=4)
                         self.post(message=f"/me privilegios de {username} adicionados.")
                         break
-        except Exception:
-            pass
 
     def adminList(self):
         commandName = 'admin_list'
@@ -350,7 +347,7 @@ class admininstrator(object):
             for i in range(len(admin)):
                 adminlist += '|@{}|\n'.format(admin[i]['username'])
             self.post(
-                    message="{}".format(admin))
+                    message="{}".format(adminlist))
             self.spam[commandName] = True
             self.avoid_spam(commandName)
 

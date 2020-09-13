@@ -212,6 +212,12 @@ class musicSistem(object):
                     self.paylist_duration.append(self.music_info['duration'])
                     self.paylist_title.append(self.music_info['title'])
                     os.remove("./cache/music_1.mp3")
+                    with open("athus/Database/music.json", "r", encoding='utf-8') as file_object:
+                        music = json.load(file_object)
+                        insert = {"name" : self.music_info['title'],"duration": self.music_info['duration'] ,"Link": result }
+                        music.append(insert)
+                    with open("athus/Database/music.json", "w", encoding="utf-8") as file_object:
+                        json.dump(music, file_object, ensure_ascii=False,indent=4)
 
                 def sand_music(self, message):
                     if re.findall('/add', message):

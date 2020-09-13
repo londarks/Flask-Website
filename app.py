@@ -46,8 +46,33 @@ def dashbord():
 			                                    cache=cache)
 	return redirect(url_for(".login"))
 
-#name
-#tripcode
+
+@app.route("/music")
+def music():
+	""" pagina dos adm """
+	login = cookie()
+	if login != None:
+		info = Controller.reload()
+		admin = Controller.adminstrator()
+		adminOnline = Controller.adminOnline()
+		time_online = Controller.timeOnline()
+		song = Controller.music()
+		cache = request.cookies.get('Athus-acess')
+		return render_template("music.html", time_online=time_online,
+			                                    Onlineusr=info,
+			                                    cookie=login,
+			                                    admin=admin,
+			                                    admns=adminOnline,
+			                                    song=song,
+			                                    cache=cache)
+	return redirect(url_for(".login"))
+
+@app.route("/play/", methods = ['POST'])
+def play():
+	if 'Play' in request.form:
+		link = request.form['Play']
+	Controller.play(link)
+	return redirect(url_for(".music"))
 
 @app.route("/commands/")
 def commands():
@@ -96,13 +121,15 @@ def punishments():
 	""" kick player"""
 	if 'kick' in request.form:
 		userID = request.form['kick']
+		userAdm = request.cookies.get('Athus-session')
 		#banindo usuario
-		Controller.kick(userID)
+		Controller.kick(userID,userAdm)
 		return redirect(url_for(".dashbord"))
 	elif 'ban' in request.form:
 		userID = request.form['ban']
+		userAdm = request.cookies.get('Athus-session')
 		#kikando usuario
-		Controller.ban(userID)
+		Controller.ban(userID,userAdm)
 		return redirect(url_for(".dashbord"))
 	elif 'blacklist' in request.form:
 		userID = request.form['blacklist']

@@ -87,71 +87,41 @@
 
     </div>
 </div>
-<form action="{{ url_for('punishments') }}" method="post" class="form">
-    <table class="container">
-        <thead>
-            <tr>
-                <th><h1>Usuarios</h1></th>
-                <th><h1>TripCode</h1></th>
-                <th><h1>Status</h1></th>
-                <th><h1>Action</h1></th>
-            </tr>
-        </thead>
-        <tbody>
-            {%for a in range(Online|length) %}
-                <tr>
-                    <td>{{Online[a]['name']}}</td>
-                    <td>{{Online[a]['tripcode']}}</td>
-                    <td>{{Online[a]['acess']}}</td>
-                    {% if cache == '3#q3B5jy' %}
-                        <td><button class="ban" type="submit" value="{{Online[a]['id']}}" name="ban">Ban</button><button class="kick" type="submit" value="{{Online[a]['id']}}" name="kick">Kick</button><button class="blacklist" type="submit" value="{{Online[a]['id']}}" name="blacklist">BlackList</button></td>
-                    {% else %}
-                        <td>Disabled</td>
-                    {% endif %}
-                </tr>
-            {%endfor%}
-        </tbody>
-    </table>
-</form>
-<div class="espace"></div>
 <div class="online">
     <div class="cards">
         <div class="card statistic" style="width: 18rem;">
             <div class="card-body">
-                <p style="font-weight: bold !important;font-size: 20px !important;">Black List</p>
+                <p style="font-weight: bold !important;font-size: 20px !important;">Song List</p>
             </div>
         </div>
     </div>
 </div>
-<form action="{{ url_for('punishments') }}" method="post" class="form">
+<form action="{{ url_for('play') }}" method="post" class="form">
     <table class="container">
         <thead>
             <tr>
-                <th><h1>Usuarios</h1></th>
-                <th><h1>TripCode</h1></th>
-                <th><h1>Date</h1></th>
+                <th><h1>Name</h1></th>
+                <th><h1>duration</h1></th>
+                <th><h1>Link</h1></th>
                 <th><h1>Action</h1></th>
             </tr>
         </thead>
         <tbody>
-            {%for i in range(blacklist|length) %}
+            {%for a in range(song|length) %}
                 <tr>
-                    <td>{{blacklist[i]['username']}}</td>
-                    <td>{{blacklist[i]['Tripcode']}}</td>
-                    <td>{{blacklist[i]['date']}}</td>
-                    {% if cache == '3#q3B5jy' %}
-                        <td><button class="blacklist" type="submit" value="{{blacklist[i]['username']}}" name="unblock">Unblock</button></td>
-                    {% else %}
-                        <td>Disabled</td>
-                    {% endif %}
+                    <td>{{song[a]['name']}}</td>
+                    <td>{{song[a]['duration']}}</td>
+                    <td>{{song[a]['Link']}}</td>
+                    <td><button class="ban" type="submit" value="{{song[a]['Link']}}"name="Play">Play </button></td>
                 </tr>
             {%endfor%}
         </tbody>
     </table>
 </form>
 
-<!-- area da dashbord -->
+<!-- fim do form -->
 
+<div class="espace"></div>
 
 
     <div class="footer">
