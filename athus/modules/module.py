@@ -94,7 +94,7 @@ class Module(object):
 
     def checkBlackList(self, username, idUser, tripcode):
         #print(idUser)
-        with open("Database/Database.json", "r",encoding='utf-8') as json_file:
+        with open("athus/Database/Database.json", "r",encoding='utf-8') as json_file:
             Blackusers = json.load(json_file)
         for i in range(len(Blackusers)):
             try:
@@ -111,7 +111,7 @@ class Module(object):
             if tripcode == self.admin_list[0]:
                 user = message[8:]
                 """ sistema de blacklist para imposibilitar a entrada de usuario que eu não quero na sala"""
-                with open("Database/Database.json", "r") as file_object:
+                with open("athus/Database/Database.json", "r") as file_object:
                     containts = json.load(file_object)
                 #check user in the room
                 itens = self.returnIduser(user)
@@ -119,7 +119,7 @@ class Module(object):
                 insert = {"username" : user,"Tripcode" : itens[0]}
                 containts.append(insert)
 
-                with open("Database/Database.json", "w") as file_object:
+                with open("athus/Database/Database.json", "w") as file_object:
                     json.dump(containts, file_object, indent=4)
 
                 try:
@@ -141,7 +141,7 @@ class Module(object):
             insert = {"username" : name,"messagem" : message, "date": upTime}
             containts.append(insert)
         with open("athus/Database/log.json", "w",encoding='utf-8') as file_object:
-            json.dump(accounts, file_object, ensure_ascii=False,indent=4)
+            json.dump(containts, file_object, ensure_ascii=False,indent=4)
 
 
 
