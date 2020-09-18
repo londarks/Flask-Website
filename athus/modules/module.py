@@ -28,7 +28,7 @@ class Module(object):
         self.connection = sqlite3.connect('admin.db', check_same_thread=False)
         self.cursor = self.connection.cursor()
         #tripcode dos adms
-        self.admin_list = ['TqOzGmy5V.']#londarks tripcode
+        self.admin_list = ['ATHUSo12kM']#londarks tripcode
 
     def loadAdm(self, tripcode):
         with open('./Database/adm.json','r',encoding='utf-8') as json_file:
@@ -130,6 +130,21 @@ class Module(object):
         except Exception as e:
             print(e)
 
+    def database(self,name,message):
+        #time
+        now = datetime.datetime.now()
+        current_time = now.strftime("%H:%M:%S")
+        data_atual = datetime.date.today()
+        upTime = "{} | {}".format(current_time,data_atual)
+        with open("athus/Database/log.json", "r",encoding='utf-8') as file_object:
+            containts = json.load(file_object)
+            insert = {"username" : name,"messagem" : message, "date": upTime}
+            containts.append(insert)
+        with open("athus/Database/log.json", "w",encoding='utf-8') as file_object:
+            json.dump(accounts, file_object, ensure_ascii=False,indent=4)
+
+
+
 
     def room_update(self):
         t_loop = threading.Thread(target=self.admin.loop_msg)
@@ -137,6 +152,7 @@ class Module(object):
         #inicializando bot
         sendResponse  = self.session.get("https://drrr.com/json.php?fast=1")
         response = sendResponse.json()
+        #condição para  ver se esta na sala ou não
         checkUpdate = response['update']
         while True:
             if self.killProcess == True:
@@ -180,6 +196,9 @@ class Module(object):
                     except Exception:
                         tripcode = None 
                     message = msgApi['talks'][0]['message']
+                    #salvando dados
+                    t_DB = threading.Thread(target=self.database, args=(name_sender,message))
+                    t_DB.start()
                     #tradutor automatico
                     if self.transBollean == True:
                         if self.usernameTrans == name_sender:
@@ -394,7 +413,7 @@ class Module(object):
     def handle_private_message(self, message, id_sender, name_sender, tripcode):
         command = message
         if '/exit' == command:
-            if tripcode == "TqOzGmy5V.": #tripcode do dono do bot
+            if tripcode == "ATHUSo12kM": #tripcode do dono do bot
                 leave_body = {'leave': 'leave'}
                 lr = self.session.post('https://drrr.com/room/?ajax=1', leave_body)
                 lr.close()
