@@ -227,8 +227,6 @@ class Module(object):
                 except Exception as e:
                     pass
 
-
-
     def block (self, message, name_sender, tripcode, id_sender):
         message = message[7:]
         for i in range(len(self.admin_list)):
@@ -275,7 +273,7 @@ class Module(object):
                 target=self.admin.commandsAdmin)
             t_commandsAdmin.start()
 
-        elif '/BL' == command:
+        elif '/Blacklist' == command:
             t_Blacklist = threading.Thread(target=self.admin.showBl)
             t_Blacklist.start()
 

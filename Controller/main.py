@@ -85,24 +85,12 @@ class WebsiteControl(object):
 		kc = self.session.post('https://drrr.com/room/?ajax=1', kick_body)
 		kc.close()
 
-		base64_bytes = adm.encode('ascii')
-		message_bytes = base64.b64decode(base64_bytes)
-		adminstrator = message_bytes.decode('ascii')
-
-		self.post(message="/me Usuario Kikado por: {}".format(adminstrator))
-
 	def ban(self,name,adm):
 		ban_body = {
 		'ban': name
 		}
 		kc = self.session.post('https://drrr.com/room/?ajax=1', ban_body)
 		kc.close()
-
-		base64_bytes = adm.encode('ascii')
-		message_bytes = base64.b64decode(base64_bytes)
-		adminstrator = message_bytes.decode('ascii')
-
-		self.post(message="/me Usuario banido por: {}".format(adminstrator))
 
 	def Dashboard(self):
 		active = True
@@ -121,7 +109,7 @@ class WebsiteControl(object):
 			for r in range(len(admin)):
 				try:
 					if user[x]['tripcode'] == admin[r]['Tripcode']:
-						insert = {"name" : user[x]['name'],"tripcode" :user[x]['tripcode'] ,"acess": "ADM"}
+						insert = {"name" : user[x]['name'],"id" : user[x]['id'],"tripcode" :user[x]['tripcode'] ,"acess": "ADM"}
 						usuarios.append(insert)
 						active = False
 						break
@@ -131,7 +119,7 @@ class WebsiteControl(object):
 				except Exception:
 					tripcode = ""
 			if active:
-				insert = {"name" : user[x]['name'],"tripcode" : tripcode ,"acess": "user"}
+				insert = {"name" : user[x]['name'],"id" : user[x]['id'],"tripcode" : tripcode ,"acess": "user"}
 				usuarios.append(insert)
 				active = True
 		return usuarios

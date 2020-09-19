@@ -13,7 +13,7 @@ from athus.commands import translation
 from athus.commands import api
 
 class Athus(object):
-	def __init__(self, name="Athus",icon="tanaka",room="A9DqYrEeCf"):
+	def __init__(self, name="zzz",icon="tanaka",room="EaUwgYdRqb"):
 		self.name = name
 		self.icon = icon
 		self.file_name = 'athus/cache/athus.cookie'

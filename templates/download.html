@@ -39,9 +39,6 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ url_for('music') }}">music</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('download') }}">Download</a>
-            </li>
         </ul>
         <div class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -90,43 +87,29 @@
 
     </div>
 </div>
-<div class="online">
-    <div class="cards">
-        <div class="card statistic" style="width: 18rem;">
-            <div class="card-body">
-                <p style="font-weight: bold !important;font-size: 20px !important;">Song List</p>
-            </div>
-        </div>
-    </div>
-</div>
-<form action="{{ url_for('play') }}" method="post" class="form">
+<!-- area de conteudo -->
+<form action="{{ url_for('file') }}" method="post" class="form">
     <table class="container">
         <thead>
             <tr>
-                <th><h1>Name</h1></th>
-                <th><h1>duration</h1></th>
-                <th><h1>Link</h1></th>
+                <th><h1>Nome</h1></th>
                 <th><h1>Action</h1></th>
             </tr>
         </thead>
         <tbody>
-            {%for a in range(song|length) %}
-                <tr>
-                    <td>{{song[a]['name']}}</td>
-                    <td>{{song[a]['duration']}}</td>
-                    <td>{{song[a]['Link']}}</td>
-                    <td><button class="ban" type="submit" value="{{song[a]['Link']}}"name="Play">Play </button></td>
-                </tr>
-            {%endfor%}
+        	<tr>
+        		<td>Musicas</td>
+        		<td><button class="blacklist" type="submit" value="music" name="music">Download</button></td>
+            </tr>
+            <tr>
+        		<td>Logs</td>
+        		<td><button class="blacklist" type="submit" value="logs" name="logs">Download</button></td>
+            </tr>
         </tbody>
     </table>
 </form>
 
-<!-- fim do form -->
-
-<div class="espace"></div>
-
-
+<!-- area de conteudo -->
     <div class="footer">
         <div class="bot-footer">
             <img src="{{ url_for('static',    filename='assets/logo.png') }}" width="50" height="50"><br />

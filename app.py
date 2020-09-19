@@ -1,6 +1,6 @@
 import flask
 import base64
-from flask import Flask,request, jsonify, render_template, redirect, url_for
+from flask import Flask,request, jsonify, render_template, redirect, url_for, send_file
 from Controller import main
 
 app = Flask(__name__)
@@ -79,6 +79,21 @@ def commands():
 	""" pagina inicial com autentificação de cookie """
 	login = cookie()
 	return render_template("commands.html",cookie=login)
+
+
+@app.route("/download/")
+def download():
+	""" pagina de download e arquivos do bot """
+	return render_template("download.html")
+
+@app.route("/file/", methods=["POST"])
+def file():
+	#tipode de download
+	if 'music' in request.form:
+		return send_file("athus/Database/music.json", mimetype='json')
+	elif 'logs' in request.form:
+		return send_file("athus/Database/log.json", mimetype='json')
+	return ""
 
 @app.route("/login/")
 def login():
